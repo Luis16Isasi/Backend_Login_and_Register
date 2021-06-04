@@ -10,7 +10,10 @@ module.exports = () => {
   router.get("/usuario", usuarioController.obtenerUsuarios);
 
   //elimina a un usuario por su _id
-  router.delete("/usuario/:id", usuarioController.eliminarUsuario);
+  router.delete("/usuario/:user", usuarioController.eliminarUsuario);
+
+  //find by usuario
+  router.get("/usuario/:user", usuarioController.getUser);
 
   return router;
 };

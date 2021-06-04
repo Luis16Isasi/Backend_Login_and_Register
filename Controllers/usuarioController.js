@@ -14,6 +14,21 @@ exports.nuevoUsuario = async (req, res, next) => {
   }
 };
 
+//find by user
+exports.getUser = async (req, res, next) => {
+  try {
+    const usuario = await Usuario.find({ usuario: req.params.user });
+    if (usuario.length === 0) {
+      res.json(null);
+    } else {
+      res.json(usuario);
+    }
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+};
+
 //obtener todos los usuarios
 exports.obtenerUsuarios = async (req, res, next) => {
   try {
