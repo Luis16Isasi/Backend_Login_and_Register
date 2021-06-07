@@ -13,7 +13,11 @@ exports.loginUser = async (req, res, next) => {
         error: "no existe el usuario.",
       });
     } else {
-      res.json(usuario);
+      res.json({
+        userId: usuario._id,
+        usuario: usuario.usuario,
+        personId: usuario.personId,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -32,6 +36,7 @@ exports.nuevoUsuario = async (req, res, next) => {
       mensaje: "se creo correctamente el usuario",
       userId: usuario._id,
       usuario: usuario.usuario,
+      personId: usuario.personId,
     });
   } catch (error) {
     console.log(error);
