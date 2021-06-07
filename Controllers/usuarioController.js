@@ -2,12 +2,12 @@ const Usuario = require("../models/Usuario");
 
 //login
 exports.loginUser = async (req, res, next) => {
-  try {
-    const usuario = await Usuario.find({
-      usuario: req.body.usuario,
-      contraseña: req.body.contraseña,
-    });
+  const usuario = await Usuario.find({
+    usuario: req.body.usuario,
+    contraseña: req.body.contraseña,
+  });
 
+  try {
     if (usuario.length === 0) {
       res.json({
         error: "no existe el usuario.",
