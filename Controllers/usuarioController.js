@@ -28,12 +28,7 @@ exports.nuevoUsuario = async (req, res, next) => {
 
   try {
     await usuario.save();
-    res.json({
-      mensaje: "se creo correctamente el usuario",
-      userId: usuario._id,
-      usuario: usuario.usuario,
-      personId: usuario.personId,
-    });
+    res.json(usuario);
   } catch (error) {
     console.log(error);
     next();
