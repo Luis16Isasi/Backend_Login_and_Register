@@ -2,10 +2,7 @@ const Usuario = require("../models/Usuario");
 
 //login
 exports.loginUser = async (req, res, next) => {
-  const usuario = await Usuario.find({
-    usuario: req.body.usuario,
-    contraseña: req.body.contraseña,
-  });
+  const usuario = await Usuario.find(req.body);
 
   try {
     if (usuario.length === 0) {
