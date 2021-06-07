@@ -4,7 +4,7 @@ const usuarioController = require("../Controllers/usuarioController");
 
 module.exports = () => {
   //login
-  router.post("/login", usuarioController.nuevoUsuario);
+  router.post("/login", usuarioController.loginUser);
 
   //agrega nuevos usuarios a la base de datos
   router.post("/register", usuarioController.nuevoUsuario);
