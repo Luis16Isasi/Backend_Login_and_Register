@@ -3,6 +3,12 @@ const router = express.Router();
 const usuarioController = require("../Controllers/usuarioController");
 
 module.exports = () => {
+  //login
+  router.post("/login", usuarioController.nuevoUsuario);
+
+  //agrega nuevos usuarios a la base de datos
+  router.post("/register", usuarioController.nuevoUsuario);
+
   //agrega nuevos usuarios a la base de datos
   router.post("/usuario", usuarioController.nuevoUsuario);
 

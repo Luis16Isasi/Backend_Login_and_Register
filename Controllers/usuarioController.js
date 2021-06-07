@@ -1,5 +1,26 @@
 const Usuario = require("../models/Usuario");
 
+//login
+exports.loginUser = async (req, res, next) => {
+  try {
+    const usuario = await Usuario.find({
+      usuario: req.body.usuario,
+      contraseña: req.body.contraseña,
+    });
+
+    if (usuario.length === 0) {
+      res.json({
+        error: "no existe el usuario.",
+      });
+    } else {
+      res.json(usuario);
+    }
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+};
+
 //cuando se crea un nuevo usuario
 exports.nuevoUsuario = async (req, res, next) => {
   //crear un nuevo objeto de usuario con los datos de req.body
