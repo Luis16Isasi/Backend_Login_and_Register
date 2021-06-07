@@ -2,19 +2,18 @@ const Usuario = require("../models/Usuario");
 
 //login
 exports.loginUser = async (req, res, next) => {
-  const usuario = await Usuario.find(req.body);
-
+  const usuario = await Usuario.find({ usuario: req.body.usuario });
+  console.log({ usuario });
   try {
     if (usuario.length === 0) {
-      res.json({
-        error: "no existe el usuario.",
-      });
+      res.status(404).send({ error: "no existe el usuario." });
     } else {
-      res.json({
-        userId: usuario._id,
-        usuario: usuario.usuario,
-        personId: usuario.personId,
-      });
+      const user = usuario[0];
+      if (user.contraseña === req.body.contraseña) {
+        res.json(usuario[0]);
+      } else {
+        res.status(401).send({ error: "Contraseña incorrecta." });
+      }
     }
   } catch (error) {
     console.log(error);
